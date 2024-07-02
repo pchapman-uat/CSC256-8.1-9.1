@@ -1,3 +1,7 @@
+.boardSection {
+    display: flex;
+    justify-content: space-around;
+}
 #chessboard {
     border-style: solid;
     width: 800px;
