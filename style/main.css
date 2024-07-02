@@ -1,0 +1,15 @@
+#chessboard {
+    border-style: solid;
+    width: 800px;
+    height: 800px;
+}
+.chessRow {
+    display: flex;
+}
+.chessCell {
+    width: 100px;
+    height: 100px;
+}
+.odd {
+    background-color: black;
+}
