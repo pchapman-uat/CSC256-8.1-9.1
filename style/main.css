@@ -1,6 +1,6 @@
  :root {
-    --boardWidth: 500px;
-    --boardHeight: 500px;
+    --boardWidth: 450px;
+    --boardHeight: 450px;
  }
 
 .boardSection {
