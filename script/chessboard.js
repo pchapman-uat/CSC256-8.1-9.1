@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => main());
 
 function main(){
     // Bind the update colors functions to the color inputs
-    document.getElementById("chessOddColor").addEventListener("change", () => updateColors())
-    document.getElementById("chessEvenColor").addEventListener("change", () => updateColors())
+    document.getElementById("chessOddColor").addEventListener("input", () => updateColors())
+    document.getElementById("chessEvenColor").addEventListener("input", () => updateColors())
     // Create the chess board
     createBoard()
 }
