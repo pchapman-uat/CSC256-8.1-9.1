@@ -1,16 +1,21 @@
+ :root {
+    --boardWidth: 500px;
+    --boardHeight: 500px;
+ }
+
 .boardSection {
     display: flex;
     justify-content: space-around;
 }
 #chessboard {
     border-style: solid;
-    width: 800px;
-    height: 800px;
+    width: var(--boardWidth);
+    height: var(--boardHeight);
 }
 .chessRow {
     display: flex;
 }
 .chessCell {
-    width: 100px;
-    height: 100px;
+    width: calc(var(--boardWidth)/8);
+    height: calc(var(--boardWidth)/8);
 }
