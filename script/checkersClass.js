@@ -10,7 +10,21 @@ class Board {
         [null, null, null, null, null, null, null, null]
     ]
     beginBoard(){
-
+        for(let i=0; i < 3; i++){
+            console.log(i)
+            for(let j=0; j < this.board[i].length; j++){
+                console.log(j)
+                if(!((j+i) % 2 === 0)) this.board[i][j] = new Piece(TEAM.WHITE, i, j)
+            }
+        }
+        for(let i=this.board.length-1; i > this.board.length-4; i--){
+            console.log(i)
+            for(let j=0; j < this.board[i].length; j++){
+                console.log(j)
+                if(!((j+i) % 2 === 0)) this.board[i][j] = new Piece(TEAM.BLACK, i, j)
+            }
+        }
+        console.log(this.board)
     }
 }
 class Piece {
@@ -36,3 +50,6 @@ const TEAM = Object.freeze({
     WHITE: Symbol(0),
     BLACK: Symbol(1),
 });
+
+new Board().beginBoard()
+console.log("Done")

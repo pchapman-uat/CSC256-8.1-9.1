@@ -1,6 +1,8 @@
 // Begin main function on load
 document.addEventListener("DOMContentLoaded", () => main());
 
+
+
 function main(){
     // Bind the update colors functions to the color inputs
     document.getElementById("chessOddColor").addEventListener("input", () => updateColors())
