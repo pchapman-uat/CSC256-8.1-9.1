@@ -9,6 +9,8 @@ function main(){
     // Bind the update colors functions to the color inputs
     document.getElementById("chessOddColor").addEventListener("input", () => updateColors())
     document.getElementById("chessEvenColor").addEventListener("input", () => updateColors())
+    document.getElementById("topPlayerColor").addEventListener("input", () => updateColors())
+    document.getElementById("bottomPlayerColor").addEventListener("input", () => updateColors())
     // Create the chess board
     createBoard()
 }
@@ -56,9 +58,20 @@ function updateColors(){
     let oddColor = document.getElementById("chessOddColor").value;
     // Get the even color
     let evenColor = document.getElementById("chessEvenColor").value;
+    // Get all top player pices
+    let topPlayerPieces = document.getElementsByClassName("white-piece");
+    // Get all bottom player pices
+    let bottomPlayerPieces = document.getElementsByClassName("black-piece");
+    // Get the white piece color
+    let topPlayerColor = document.getElementById("topPlayerColor").value;
+    // Get the black piece color
+    let bottomPlayerColor = document.getElementById("bottomPlayerColor").value;
     // For each odd and even cell, set the background color to the respective color
     setAllColor(chessOdd, oddColor);
     setAllColor(chessEven, evenColor);
+    setAllColor(topPlayerPieces, topPlayerColor);
+    setAllColor(bottomPlayerPieces, bottomPlayerColor);
+    
 }
 
 /**
