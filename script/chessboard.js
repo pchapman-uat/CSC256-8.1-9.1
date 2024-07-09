@@ -64,13 +64,14 @@ function updateColors(){
     let bottomPlayerPieces = document.getElementsByClassName("black-piece");
     // Get the white piece color
     let topPlayerColor = document.getElementById("topPlayerColor").value;
+    console.log(topPlayerColor)
     // Get the black piece color
     let bottomPlayerColor = document.getElementById("bottomPlayerColor").value;
     // For each odd and even cell, set the background color to the respective color
     setAllColor(chessOdd, oddColor);
     setAllColor(chessEven, evenColor);
-    setAllColor(topPlayerPieces, topPlayerColor);
-    setAllColor(bottomPlayerPieces, bottomPlayerColor);
+    setGradient(topPlayerPieces, topPlayerColor);
+    setGradient(bottomPlayerPieces, bottomPlayerColor);
     
 }
 
@@ -81,4 +82,30 @@ function updateColors(){
  */
 function setAllColor(elements, color){
     for(let i=0; i<elements.length; i++) elements.item(i).style.backgroundColor = color;
+}
+function setGradient(elements, color){
+    for(let i=0; i<elements.length; i++) elements.item(i).style.backgroundImage = radialGradient(color);
+}
+
+
+function radialGradient(color){
+    let amnt = 75
+    color = parseHex(color) 
+    // If value is < amnt add amnt, else subtract amnt
+    let color2 = {
+        r: color.r < amnt ? color.r + amnt : color.r - amnt,
+        g: color.g < amnt ? color.g + amnt : color.g - amnt,
+        b: color.b < amnt ? color.b + amnt : color.b - amnt
+    }
+    let result = `radial-gradient(rgb(${color.r}, ${color.g}, ${color.b}), rgba(${color2.r}, ${color2.g}, ${color2.b}))`
+    console.log(result)
+    return result;
+}
+function parseHex(hex){
+    hex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return hex ? {
+        r: parseInt(hex[1], 16),
+        g: parseInt(hex[2], 16),
+        b: parseInt(hex[3], 16)
+      } : null;
 }
