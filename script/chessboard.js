@@ -3,7 +3,12 @@ import { Board } from "./checkersClass.js";
 // Begin main function on load
 document.addEventListener("DOMContentLoaded", () => main());
 
-
+const defaultColors = {
+    odd: "#000000",
+    even: "#ffffff",
+    topPlayer: "#ffffff",
+    bottomPlayer: "#000000"
+};
 
 function main(){
     // Bind the update colors functions to the color inputs
@@ -11,6 +16,7 @@ function main(){
     document.getElementById("chessEvenColor").addEventListener("input", () => updateColors())
     document.getElementById("topPlayerColor").addEventListener("input", () => updateColors())
     document.getElementById("bottomPlayerColor").addEventListener("input", () => updateColors())
+    document.getElementById("resetColors").addEventListener("click", (e) => resetColors(e))
     // Create the chess board
     createBoard()
 }
@@ -43,13 +49,13 @@ function createBoard(){
         board.appendChild(rowElement);
     }
     // Update the collors
-    updateColors()
     let checkersBoard = new Board();
     checkersBoard.beginBoard();
-
+    resetColors()
 }
 
 function updateColors(){
+    console.log("Updating colors")
     // Get all odd cells
     let chessOdd =  document.getElementsByClassName("chessOdd");
     // Get all even cells
@@ -75,6 +81,18 @@ function updateColors(){
     
 }
 
+/**
+ * 
+ * @param {PointerEvent} e - Can be null
+ */
+function resetColors(e){
+    if(e) e.preventDefault();
+    document.getElementById("chessOddColor").value = defaultColors.odd;
+    document.getElementById("chessEvenColor").value = defaultColors.even;
+    document.getElementById("topPlayerColor").value = defaultColors.topPlayer;
+    document.getElementById("bottomPlayerColor").value = defaultColors.bottomPlayer;
+    updateColors()
+}
 /**
  * 
  * @param {HTMLCollectionOf<Element>} elements 
