@@ -57,7 +57,15 @@ function updateColors(){
     // Get the even color
     let evenColor = document.getElementById("chessEvenColor").value;
     // For each odd and even cell, set the background color to the respective color
-    for(let i=0; i<chessOdd.length; i++) chessOdd.item(i).style.backgroundColor = oddColor;
-    for(let i=0; i<chessEven.length; i++) chessEven.item(i).style.backgroundColor = evenColor;
+    setAllColor(chessOdd, oddColor);
+    setAllColor(chessEven, evenColor);
+}
 
+/**
+ * 
+ * @param {HTMLCollectionOf<Element>} elements 
+ * @param {String} color 
+ */
+function setAllColor(elements, color){
+    for(let i=0; i<elements.length; i++) elements.item(i).style.backgroundColor = color;
 }
