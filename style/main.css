@@ -11,6 +11,8 @@
     border-style: solid;
     width: var(--boardWidth);
     height: var(--boardHeight);
+    border-radius: 10px;
+    overflow: hidden;
 }
 .chessRow {
     display: flex;
@@ -27,4 +29,14 @@
     height: 100%;
     border-radius: 100%;
     scale: 0.8;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
+.inputs > div {
+    display: flex;
+    justify-content: space-around;
+    margin: 1%;
 }
