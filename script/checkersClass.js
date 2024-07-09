@@ -11,17 +11,22 @@ class Board {
     ]
     beginBoard(){
         for(let i=0; i < 3; i++){
-            console.log(i)
             for(let j=0; j < this.board[i].length; j++){
                 console.log(j)
-                if(!((j+i) % 2 === 0)) this.board[i][j] = new Piece(TEAM.WHITE, i, j)
+                if(!((j+i) % 2 === 0)) {
+                    this.board[i][j] = new Piece(TEAM.WHITE, i, j)
+                    this.board[i][j].makeElement();
+                }
             }
         }
         for(let i=this.board.length-1; i > this.board.length-4; i--){
-            console.log(i)
             for(let j=0; j < this.board[i].length; j++){
                 console.log(j)
-                if(!((j+i) % 2 === 0)) this.board[i][j] = new Piece(TEAM.BLACK, i, j)
+                if(!((j+i) % 2 === 0)) {
+                    this.board[i][j] = new Piece(TEAM.BLACK, i, j)
+                    this.board[i][j].makeElement();
+                }
+
             }
         }
         console.log(this.board)
@@ -40,16 +45,23 @@ class Piece {
         this.col = col;
     }
 
+    makeElement(){
+        console.log("Making Elemnt")
+        let cell = document.getElementById(`${this.row}-${this.col}`)
+        let element = document.createElement("div");
+        element.classList.add("piece")
+        element.classList.add(this.team+"-piece")
+        cell.appendChild(element)
+    }   
 }
 /**
  * @typedef TEAM
- * @property {Number} WHITE
- * @property {Number} BLACK
+ * @property {String} WHITE
+ * @property {String} BLACK
  */
 const TEAM = Object.freeze({
-    WHITE: Symbol(0),
-    BLACK: Symbol(1),
+    WHITE: "white",
+    BLACK: "black"
 });
 
-new Board().beginBoard()
-console.log("Done")
+export { Board, Piece, TEAM};

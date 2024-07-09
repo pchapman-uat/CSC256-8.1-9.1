@@ -19,3 +19,17 @@
     width: calc(var(--boardWidth)/8);
     height: calc(var(--boardWidth)/8);
 }
+
+.piece {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.black-piece {
+    background-color: blue;
+}
+
+.white-piece {
+    background-color: green;
+}
