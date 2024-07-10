@@ -10,6 +10,7 @@ const defaultColors = {
     bottomPlayer: "#000000"
 };
 
+var lastDraggedCell = null;
 function main(){
     // Bind the update colors functions to the color inputs
     document.getElementById("chessOddColor").addEventListener("input", () => updateColors())
@@ -41,6 +42,8 @@ function createBoard(){
             // It will add the col and row index, and then devide it by two, if the reaminder is 0 then it is even
             if((col+row) % 2 === 0) cell.classList.add("chessEven");
             else cell.classList.add("chessOdd");
+            cell.addEventListener("dragover", (e) => lastDraggedCell = cell.id)
+            cell.addEventListener("dragend", () => handleDrop(lastDraggedCell))
             cell.setAttribute("id", `${row}-${col}`)
             // Add the cell to the row
             rowElement.appendChild(cell);
@@ -54,6 +57,11 @@ function createBoard(){
     resetColors()
 }
 
+
+function handleDrop(id){
+    console.log("Dropped")
+    console.log(id)
+}
 function updateColors(){
     console.log("Updating colors")
     // Get all odd cells

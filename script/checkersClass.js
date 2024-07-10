@@ -51,6 +51,7 @@ class Piece {
         let element = document.createElement("div");
         element.classList.add("piece")
         element.classList.add(this.team+"-piece")
+        element.draggable = true;
         cell.appendChild(element)
     }   
 }
