@@ -42,8 +42,9 @@ function createBoard(){
             // It will add the col and row index, and then devide it by two, if the reaminder is 0 then it is even
             if((col+row) % 2 === 0) cell.classList.add("chessEven");
             else cell.classList.add("chessOdd");
-            cell.addEventListener("dragover", (e) => lastDraggedCell = cell.id)
+            cell.addEventListener("dragover", (e) => onDragOver(e, cell))
             cell.addEventListener("dragend", () => handleDrop(lastDraggedCell, row, col))
+            cell.addEventListener("dragleave", (e) => onDragEnd(e, cell))
             cell.setAttribute("id", `${row}-${col}`)
             // Add the cell to the row
             rowElement.appendChild(cell);
@@ -55,6 +56,23 @@ function createBoard(){
     resetColors()
 }
 
+/**
+ * 
+ * @param {DragEvent} e 
+ * @param {HTMLDivElement} cell 
+ */
+function onDragOver(e, cell){
+    lastDraggedCell = cell.id;
+    cell.classList.add("hoverCell")
+}
+/**
+ * 
+ * @param {DragEvent} e 
+ * @param {HTMLDivElement} cell 
+ */
+function onDragEnd(e, cell){
+    cell.classList.remove("hoverCell")
+}
 
 function handleDrop(id, oldRow, oldCol){
     console.log("Dropped")

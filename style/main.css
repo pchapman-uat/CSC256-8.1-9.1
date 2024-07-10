@@ -40,3 +40,8 @@
     justify-content: space-around;
     margin: 1%;
 }
+
+.hoverCell {
+    outline: 3px dashed red;
+    z-index: 9;
+}
