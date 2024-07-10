@@ -52,6 +52,7 @@ class Board {
      * @param {Number} col 
      */
     movePiece(piece, row, col){
+        if(this.getPiece(row,col)) return;
         this.board[row][col] = piece
         this.board[piece.row][piece.col] = null
         piece.move(row, col)
