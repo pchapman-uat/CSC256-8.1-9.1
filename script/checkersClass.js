@@ -1,4 +1,7 @@
 class Board {
+    /**
+     * @type {Array<Array<Piece>}
+     */
     board = [
         [null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null],
@@ -35,12 +38,23 @@ class Board {
         }
         console.log(this.board)
     }
+    getAndMove(oldRow, oldCol, newRow, newCol){
+        let piece = this.getPiece(oldRow, oldCol);
+        this.movePiece(piece, newRow, newCol); 
+    }
     getPiece(row, col){
         return this.board[row][col]
     }
+    /**
+     * 
+     * @param {Piece} piece 
+     * @param {Number} row 
+     * @param {Number} col 
+     */
     movePiece(piece, row, col){
         this.board[row][col] = piece
         this.board[piece.row][piece.col] = null
+        piece.move(row, col)
     }
 }
 class Piece {

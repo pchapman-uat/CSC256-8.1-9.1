@@ -62,7 +62,7 @@ function handleDrop(id, oldRow, oldCol){
     let newRow = parseInt(id.split("-")[0]);
     let newCol = parseInt(id.split("-")[1]);
     console.log("To: " + newRow + ", " + newCol)
-    checkersBoard.movePiece
+    checkersBoard.getAndMove(oldRow, oldCol, newRow, newCol)
 }
 function updateColors(){
     console.log("Updating colors")
