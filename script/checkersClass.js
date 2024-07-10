@@ -35,6 +35,13 @@ class Board {
         }
         console.log(this.board)
     }
+    getPiece(row, col){
+        return this.board[row][col]
+    }
+    movePiece(piece, row, col){
+        this.board[row][col] = piece
+        this.board[piece.row][piece.col] = null
+    }
 }
 class Piece {
     /**
@@ -57,10 +64,24 @@ class Piece {
         let element = document.createElement("div");
         element.classList.add("piece")
         element.classList.add(this.team+"-piece")
-        element.setAttribute("id", this.team+`-piece-${this.index}`)
+        element.setAttribute("id", this.getIDString())
         element.draggable = true;
         cell.appendChild(element)
-    }   
+    } 
+    /**
+     * 
+     * @returns {String}
+     */
+    getIDString(){
+        return `${this.team}-piece-${this.index}`
+    }
+    move(row, col){
+        this.row = row;
+        this.col = col;
+        let cell = document.getElementById(`${this.row}-${this.col}`)
+        let element = document.getElementById(this.getIDString())
+        cell.appendChild(element)
+    }
 }
 /**
  * @typedef TEAM

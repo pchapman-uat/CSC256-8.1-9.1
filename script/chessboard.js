@@ -9,7 +9,7 @@ const defaultColors = {
     topPlayer: "#ffffff",
     bottomPlayer: "#000000"
 };
-
+let checkersBoard = new Board();
 var lastDraggedCell = null;
 function main(){
     // Bind the update colors functions to the color inputs
@@ -43,7 +43,7 @@ function createBoard(){
             if((col+row) % 2 === 0) cell.classList.add("chessEven");
             else cell.classList.add("chessOdd");
             cell.addEventListener("dragover", (e) => lastDraggedCell = cell.id)
-            cell.addEventListener("dragend", () => handleDrop(lastDraggedCell))
+            cell.addEventListener("dragend", () => handleDrop(lastDraggedCell, row, col))
             cell.setAttribute("id", `${row}-${col}`)
             // Add the cell to the row
             rowElement.appendChild(cell);
@@ -51,16 +51,18 @@ function createBoard(){
         // Add the row to the board
         board.appendChild(rowElement);
     }
-    // Update the collors
-    let checkersBoard = new Board();
     checkersBoard.beginBoard();
     resetColors()
 }
 
 
-function handleDrop(id){
+function handleDrop(id, oldRow, oldCol){
     console.log("Dropped")
-    console.log(id)
+    console.log("From: " + oldRow + ", " + oldCol)
+    let newRow = parseInt(id.split("-")[0]);
+    let newCol = parseInt(id.split("-")[1]);
+    console.log("To: " + newRow + ", " + newCol)
+    checkersBoard.movePiece
 }
 function updateColors(){
     console.log("Updating colors")
