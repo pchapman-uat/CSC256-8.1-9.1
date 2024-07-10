@@ -10,12 +10,15 @@ class Board {
         [null, null, null, null, null, null, null, null]
     ]
     beginBoard(){
+        let whitePices = 0;
+        let blackPices = 0;
         for(let i=0; i < 3; i++){
             for(let j=0; j < this.board[i].length; j++){
                 console.log(j)
                 if(!((j+i) % 2 === 0)) {
-                    this.board[i][j] = new Piece(TEAM.WHITE, i, j)
+                    this.board[i][j] = new Piece(TEAM.WHITE, i, j, whitePices)
                     this.board[i][j].makeElement();
+                    whitePices++;
                 }
             }
         }
@@ -23,8 +26,9 @@ class Board {
             for(let j=0; j < this.board[i].length; j++){
                 console.log(j)
                 if(!((j+i) % 2 === 0)) {
-                    this.board[i][j] = new Piece(TEAM.BLACK, i, j)
+                    this.board[i][j] = new Piece(TEAM.BLACK, i, j, blackPices)
                     this.board[i][j].makeElement();
+                    blackPices++;
                 }
 
             }
@@ -38,11 +42,13 @@ class Piece {
      * @param {TEAM} team 
      * @param {Number} row 
      * @param {Number} col 
+     * @param {Number} index
      */
-    constructor(team, row, col){
+    constructor(team, row, col, index){
         this.team = team;
         this.row = row;
         this.col = col;
+        this.index = index;
     }
 
     makeElement(){
@@ -51,6 +57,7 @@ class Piece {
         let element = document.createElement("div");
         element.classList.add("piece")
         element.classList.add(this.team+"-piece")
+        element.setAttribute("id", this.team+`-piece-${this.index}`)
         element.draggable = true;
         cell.appendChild(element)
     }   
