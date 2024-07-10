@@ -53,9 +53,23 @@ class Board {
      */
     movePiece(piece, row, col){
         if(this.getPiece(row,col)) return;
+        if(!this.validateMove(piece, row, col)) return;
         this.board[row][col] = piece
         this.board[piece.row][piece.col] = null
         piece.move(row, col)
+    }
+
+    /**
+     * 
+     * @param {Piece} piece 
+     */
+    validateMove(piece, newRow, newCol){
+        let rowVect=0;
+        if(piece.team == TEAM.WHITE) rowVect = newRow-piece.row 
+        else if(piece.team == TEAM.BLACK) rowVect = piece.row-newRow;
+        
+        if(rowVect == 1 && Math.abs(piece.col - newCol) == 1) return true;
+        else return false;
     }
 }
 class Piece {
