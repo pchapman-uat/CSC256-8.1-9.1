@@ -45,3 +45,12 @@
     outline: 3px dashed red;
     z-index: 9;
 }
+
+@keyframes removePiece {
+    from{
+        opacity: 100%;
+    }
+    to {
+        opacity: 0%;
+    }
+}

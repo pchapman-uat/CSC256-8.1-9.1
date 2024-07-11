@@ -156,7 +156,11 @@ class Piece {
     }
     remove(){
         let element = document.getElementById(this.getIDString())
-        element.remove()
+        const animationLen = 0.5
+        element.style.animation = `removePiece ${animationLen}s ease`;
+        setTimeout(()=>{
+            element.remove()
+        }, animationLen * 1000)
     }
 }
 /**
