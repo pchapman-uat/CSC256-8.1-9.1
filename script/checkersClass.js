@@ -133,12 +133,26 @@ class Piece {
     getIDString(){
         return `${this.team}-piece-${this.index}`
     }
-    move(row, col){
+    move(row, col) {
+        const startRow = this.row;
+        const startCol = this.col;
         this.row = row;
         this.col = col;
-        let cell = document.getElementById(`${this.row}-${this.col}`)
-        let element = document.getElementById(this.getIDString())
-        cell.appendChild(element)
+        
+        let element = document.getElementById(this.getIDString());
+        
+        element.style.transition = 'transform 0.5s ease';
+        
+        const deltaRow = row - startRow;
+        const deltaCol = col - startCol;
+        
+        element.style.transform = `translate(${deltaCol * 125}%, ${deltaRow * 120}%)`;
+        
+        setTimeout(() => {
+            let cell = document.getElementById(`${this.row}-${this.col}`);
+            element.style.transform = ''; 
+            cell.appendChild(element);
+        }, 500);
     }
     remove(){
         let element = document.getElementById(this.getIDString())
