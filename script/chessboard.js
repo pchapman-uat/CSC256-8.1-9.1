@@ -62,6 +62,7 @@ function createBoard(){
  * @param {HTMLDivElement} cell 
  */
 function onDragOver(e, cell){
+    e.preventDefault();
     lastDraggedCell = cell.id;
     cell.classList.add("hoverCell")
 }
@@ -81,6 +82,7 @@ function handleDrop(id, oldRow, oldCol){
     let newCol = parseInt(id.split("-")[1]);
     console.log("To: " + newRow + ", " + newCol)
     checkersBoard.getAndMove(oldRow, oldCol, newRow, newCol)
+    document.getElementById(id).classList.remove("hoverCell")
 }
 function updateColors(){
     console.log("Updating colors")

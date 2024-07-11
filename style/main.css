@@ -31,8 +31,12 @@ body {
     height: 100%;
     border-radius: 100%;
     scale: 0.8;
+    cursor: grab;
 }
 
+.piece {
+    cursor: pointer;
+}
 .inputs {
     display: flex;
     flex-direction: column;
