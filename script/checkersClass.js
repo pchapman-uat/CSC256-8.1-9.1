@@ -12,16 +12,17 @@ class Board {
         [null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null]
     ]
+    whitePices = 0;
+    blackPices = 0;
     beginBoard(){
-        let whitePices = 0;
-        let blackPices = 0;
+  
         for(let i=0; i < 3; i++){
             for(let j=0; j < this.board[i].length; j++){
                 console.log(j)
                 if(!((j+i) % 2 === 0)) {
-                    this.board[i][j] = new Piece(TEAM.WHITE, i, j, whitePices)
+                    this.board[i][j] = new Piece(TEAM.WHITE, i, j, this.whitePices)
                     this.board[i][j].makeElement();
-                    whitePices++;
+                    this.whitePices++;
                 }
             }
         }
@@ -29,13 +30,15 @@ class Board {
             for(let j=0; j < this.board[i].length; j++){
                 console.log(j)
                 if(!((j+i) % 2 === 0)) {
-                    this.board[i][j] = new Piece(TEAM.BLACK, i, j, blackPices)
+                    this.board[i][j] = new Piece(TEAM.BLACK, i, j, this.blackPices)
                     this.board[i][j].makeElement();
-                    blackPices++;
+                    this.blackPices++;
                 }
 
             }
         }
+        document.getElementById("playerOnePieces").innerHTML = this.whitePices;
+        document.getElementById("playerTwoPieces").innerHTML = this.blackPices;
         console.log(this.board)
     }
     /**
@@ -96,9 +99,13 @@ class Board {
             jumpedPiece.remove();
             if(jumpedPiece){
                 console.log("removing piece at: " + jumpedRow + ", " + jumpedCol)
+                if(jumpedPiece.team == TEAM.WHITE) this.whitePices--;
+                else if(jumpedPiece.team == TEAM.BLACK) this.blackPices--;
                 this.board[jumpedRow][jumpedCol] = null;
                 console.log("Jumping")
                 console.log(jumpedPiece)
+                document.getElementById("playerOnePieces").innerHTML = this.whitePices;
+                document.getElementById("playerTwoPieces").innerHTML = this.blackPices;
                 return true;
             }else {
                 return false;
