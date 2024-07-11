@@ -33,6 +33,9 @@ body {
     scale: 0.8;
     cursor: grab;
 }
+.pieceKing {
+    outline: 3px dashed gold;
+}
 
 .piece {
     cursor: pointer;

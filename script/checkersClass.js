@@ -91,13 +91,20 @@ class Board {
      */
     validateMove(piece, newRow, newCol){
         let rowVect=0;
-        if(piece.team == TEAM.WHITE) rowVect = newRow-piece.row 
+        if(piece.king) rowVect = Math.abs(newRow-piece.row);
+        else if(piece.team == TEAM.WHITE) rowVect = newRow-piece.row 
         else if(piece.team == TEAM.BLACK) rowVect = piece.row-newRow;
+        console.log(rowVect);
         if(rowVect == 1 && Math.abs(piece.col - newCol) == 1) return true;
         else if(rowVect == 2 && Math.abs(piece.col - newCol) == 2) {
             let jumpedRow;
             let jumpedCol;
-            if(piece.team == TEAM.WHITE) jumpedRow = piece.row+1;
+            if(piece.king){
+                if(piece.row-newRow==-2) jumpedRow = piece.row+1;
+                else if(piece.row-newRow==2) jumpedRow = piece.row-1; 
+                console.log(jumpedRow)
+            }
+            else if(piece.team == TEAM.WHITE) jumpedRow = piece.row+1;
             else if(piece.team == TEAM.BLACK) jumpedRow = piece.row-1;
             if(piece.col < newCol) jumpedCol = piece.col+1;
             else if(piece.col > newCol) jumpedCol = piece.col-1;
@@ -150,6 +157,7 @@ class Piece {
         this.row = row;
         this.col = col;
         this.index = index;
+        this.king = false;
     }
 
     makeElement(){
@@ -196,6 +204,7 @@ class Piece {
             element.style.transform = ''; 
             cell.appendChild(element);
         }, 500);
+        this.promote();
     }
     remove(){
         let element = document.getElementById(this.getIDString())
@@ -204,6 +213,22 @@ class Piece {
         setTimeout(()=>{
             element.remove()
         }, animationLen * 1000)
+    }
+    promote(){
+
+        console.log("Row: ", this.row)
+        console.log("Col: ",this.col)
+        console.log("King: ",this.king)
+        if(this.king) return; 
+        else if(this.team == "black" && this.row == 0) this.king = true;
+        else if(this.team == "white" && this.row == 7) this.king = true;
+        
+        if(this.king) {
+            console.log("Is King")
+            let element = document.getElementById(this.getIDString());
+            console.log(element)
+            element.classList.add("pieceKing")
+        }
     }
 }
 /**
