@@ -52,6 +52,17 @@
     justify-content: space-around;
     text-align: center;
 }
+.picesBar{
+    height: 20px;
+    background-color: rgb(100, 100, 100);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.picesBarData {
+    height: inherit;
+    background-color: green;
+    border-radius: inherit;
+}
 @keyframes removePiece {
     from{
         opacity: 100%;

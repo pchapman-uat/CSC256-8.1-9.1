@@ -37,9 +37,14 @@ class Board {
 
             }
         }
+        this.updatePlayerStats();
+        console.log(this.board)
+    }
+    updatePlayerStats(){
         document.getElementById("playerOnePieces").innerHTML = this.whitePices;
         document.getElementById("playerTwoPieces").innerHTML = this.blackPices;
-        console.log(this.board)
+        document.getElementById("playerOneBar").style.width = (this.whitePices / 12) * 100 + "%";
+        document.getElementById("playerTwoBar").style.width = (this.blackPices / 12) * 100 + "%";
     }
     /**
      * 
@@ -104,8 +109,7 @@ class Board {
                 this.board[jumpedRow][jumpedCol] = null;
                 console.log("Jumping")
                 console.log(jumpedPiece)
-                document.getElementById("playerOnePieces").innerHTML = this.whitePices;
-                document.getElementById("playerTwoPieces").innerHTML = this.blackPices;
+                this.updatePlayerStats();
                 return true;
             }else {
                 return false;

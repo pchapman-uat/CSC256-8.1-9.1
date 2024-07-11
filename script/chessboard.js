@@ -101,6 +101,10 @@ function updateColors(){
     console.log(topPlayerColor)
     // Get the black piece color
     let bottomPlayerColor = document.getElementById("bottomPlayerColor").value;
+
+    document.getElementById("playerOneBar").style.backgroundColor = topPlayerColor;
+    document.getElementById("playerTwoBar").style.backgroundColor = bottomPlayerColor;
+
     // For each odd and even cell, set the background color to the respective color
     setAllColor(chessOdd, oddColor);
     setAllColor(chessEven, evenColor);
