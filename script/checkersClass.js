@@ -60,7 +60,14 @@ class Board {
      */
     movePiece(piece, row, col){
         if(this.getPiece(row,col)) return;
-        if(!this.validateMove(piece, row, col)) return;
+        if(!this.validateMove(piece, row, col)) {
+            const animationLen = 0.5
+            piece.getCell().style.animation = `invalidMove ${animationLen}s`;
+            setTimeout(() => {
+                piece.getCell().style.animation = "";
+            }, animationLen * 1000);
+            return;
+        };
         this.board[row][col] = piece
         this.board[piece.row][piece.col] = null
         piece.move(row, col)
@@ -125,7 +132,14 @@ class Piece {
         element.setAttribute("id", this.getIDString())
         element.draggable = true;
         cell.appendChild(element)
-    } 
+    }
+    /**
+     * 
+     * @returns {HTMLElement}
+     */
+    getCell(){
+        return document.getElementById(this.getIDString());
+    }
     /**
      * 
      * @returns {String}
