@@ -79,6 +79,7 @@ class Board {
         this.board[row][col] = piece
         this.board[piece.row][piece.col] = null
         piece.move(row, col)
+        if(this.whitePices == 0 || this.blackPices == 0) this.winGame();
     }
 
     /**
@@ -106,6 +107,7 @@ class Board {
                 console.log("removing piece at: " + jumpedRow + ", " + jumpedCol)
                 if(jumpedPiece.team == TEAM.WHITE) this.whitePices--;
                 else if(jumpedPiece.team == TEAM.BLACK) this.blackPices--;
+                console.log(this.whitePices,this.blackPices)
                 this.board[jumpedRow][jumpedCol] = null;
                 console.log("Jumping")
                 console.log(jumpedPiece)
@@ -117,6 +119,22 @@ class Board {
             
         }
         else return false;
+    }
+    winGame(){
+        console.log("Win")
+        let playerName = "";
+        let playerColor = "";
+        if(this.whitePices == 0) {
+            playerName = document.getElementById("playerTwoName").value;
+            playerColor = document.getElementById("bottomPlayerColor").value;
+        }else if(this.blackPices == 0) {
+            playerName = document.getElementById("playerOneName").value;
+            playerColor = document.getElementById("topPlayerColor").value;
+        }
+        let winScreen = document.getElementById("winScreen");
+        console.log(winScreen)
+        winScreen.style.backgroundColor = playerColor;
+        winScreen.style.visibility = "visible";
     }
 }
 class Piece {

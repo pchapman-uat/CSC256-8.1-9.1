@@ -71,6 +71,28 @@ body {
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
+.winScreen {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    display: flex;
+    justify-content: space-around;
+    visibility: hidden;
+    z-index: 8;
+}
+.winContainer {
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+    text-align: center;
+    justify-content: space-around;
+    background-color: rgba(0,255,0,0.5);
+    border-radius: 10px;
+    z-index: 9;
+    margin: 5%;
+}
+
 @keyframes removePiece {
     from{
         opacity: 100%;

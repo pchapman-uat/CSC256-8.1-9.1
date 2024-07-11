@@ -16,7 +16,7 @@
     <section class="playerSection">
         <div>
             <h3>Player 1: (Top)</h3>
-            <input type="text">
+            <input id="playerOneName" type="text">
             <p id="playerOnePieces">xx</p>
             <div class="picesBar">
                 <div class="picesBarData" id="playerOneBar"></div>
@@ -28,7 +28,7 @@
         </div>
         <div>
             <h3>Player 2: (Bottom)</h3>
-            <input type="text">
+            <input id="playerTwoName" type="text">
             <p id="playerTwoPieces">xx</p>
             <div class="picesBar">
                 <div class="picesBarData" id="playerTwoBar"></div>
@@ -38,10 +38,17 @@
                 <input id="bottomPlayerColor" value="#FFFFFF" type="color">
             </div>
         </div>
-       
     </section>
     <section class="boardSection">
-        <div id="chessboard"></div>
+        <div id="chessboard">
+            <section class="winScreen" id="winScreen">
+                <div class="winContainer">
+                    <h3>{Player X} wins!</h3>
+                    <button>Play Again?</button> 
+                </div>
+            </section>
+        </div>
+        
     </section>
     <form class="inputs">
         <div>
@@ -57,8 +64,6 @@
         <div>
             <button id="resetColors">Reset Colors</button>
         </div>
-       
-        
     </form>
 </body>
 </html>
