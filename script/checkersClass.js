@@ -38,6 +38,13 @@ class Board {
         }
         console.log(this.board)
     }
+    /**
+     * 
+     * @param {Number} oldRow 
+     * @param {Number} oldCol 
+     * @param {Number} newRow 
+     * @param {Number} newCol 
+     */
     getAndMove(oldRow, oldCol, newRow, newCol){
         let piece = this.getPiece(oldRow, oldCol);
         this.movePiece(piece, newRow, newCol); 
@@ -62,13 +69,35 @@ class Board {
     /**
      * 
      * @param {Piece} piece 
+     * @param {Number} newRow 
+     * @param {Number} newCol 
+     * @returns {boolean}
      */
     validateMove(piece, newRow, newCol){
         let rowVect=0;
         if(piece.team == TEAM.WHITE) rowVect = newRow-piece.row 
         else if(piece.team == TEAM.BLACK) rowVect = piece.row-newRow;
-        
         if(rowVect == 1 && Math.abs(piece.col - newCol) == 1) return true;
+        else if(rowVect == 2 && Math.abs(piece.col - newCol) == 2) {
+            let jumpedRow;
+            let jumpedCol;
+            if(piece.team == TEAM.WHITE) jumpedRow = piece.row+1;
+            else if(piece.team == TEAM.BLACK) jumpedRow = piece.row-1;
+            if(piece.col < newCol) jumpedCol = piece.col+1;
+            else if(piece.col > newCol) jumpedCol = piece.col-1;
+            let jumpedPiece = this.getPiece(jumpedRow, jumpedCol);
+            jumpedPiece.remove();
+            if(jumpedPiece){
+                console.log("removing piece at: " + jumpedRow + ", " + jumpedCol)
+                this.board[jumpedRow][jumpedCol] = null;
+                console.log("Jumping")
+                console.log(jumpedPiece)
+                return true;
+            }else {
+                return false;
+            }
+            
+        }
         else return false;
     }
 }
@@ -110,6 +139,10 @@ class Piece {
         let cell = document.getElementById(`${this.row}-${this.col}`)
         let element = document.getElementById(this.getIDString())
         cell.appendChild(element)
+    }
+    remove(){
+        let element = document.getElementById(this.getIDString())
+        element.remove()
     }
 }
 /**
