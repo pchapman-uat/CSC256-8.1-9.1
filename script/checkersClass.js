@@ -66,7 +66,7 @@ class Board {
      * @param {Number} row 
      * @param {Number} col 
      */
-    movePiece(piece, row, col){
+    async movePiece(piece, row, col){
         if(this.getPiece(row,col)) return;
         if(!this.validateMove(piece, row, col)) {
             const animationLen = 0.5
@@ -78,7 +78,7 @@ class Board {
         };
         this.board[row][col] = piece
         this.board[piece.row][piece.col] = null
-        piece.move(row, col)
+        await piece.move(row, col)
         if(this.whitePices == 0 || this.blackPices == 0) this.winGame();
     }
 
@@ -134,11 +134,15 @@ class Board {
         if(this.whitePices == 0) {
             playerName = document.getElementById("playerTwoName").value;
             playerColor = document.getElementById("bottomPlayerColor").value;
+            if(playerName == "") playerName = "Player Two";
         }else if(this.blackPices == 0) {
             playerName = document.getElementById("playerOneName").value;
             playerColor = document.getElementById("topPlayerColor").value;
+            if(playerName == "") playerName = "Player One";
         }
         let winScreen = document.getElementById("winScreen");
+        let winName = document.getElementById("winName");
+        winName.innerHTML = playerName+" wins!"
         console.log(winScreen)
         winScreen.style.backgroundColor = playerColor;
         winScreen.style.visibility = "visible";
@@ -199,12 +203,15 @@ class Piece {
         
         element.style.transform = `translate(${deltaCol * 125}%, ${deltaRow * 120}%)`;
         
-        setTimeout(() => {
-            let cell = document.getElementById(`${this.row}-${this.col}`);
-            element.style.transform = ''; 
-            cell.appendChild(element);
-        }, 500);
-        this.promote();
+        return new Promise(resolve => {
+            setTimeout(() => {
+                let cell = document.getElementById(`${this.row}-${this.col}`);
+                element.style.transform = ''; 
+                cell.appendChild(element);
+                this.promote();
+                resolve();
+            }, 500);
+        });        
     }
     remove(){
         let element = document.getElementById(this.getIDString())

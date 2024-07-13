@@ -16,7 +16,7 @@
     <section class="playerSection">
         <div>
             <h3>Player 1: (Top)</h3>
-            <input id="playerOneName" type="text">
+            <input id="playerOneName" type="text" placeholder="Player One">
             <p id="playerOnePieces">xx</p>
             <div class="picesBar">
                 <div class="picesBarData" id="playerOneBar"></div>
@@ -28,7 +28,7 @@
         </div>
         <div>
             <h3>Player 2: (Bottom)</h3>
-            <input id="playerTwoName" type="text">
+            <input id="playerTwoName" type="text" placeholder="Player Two">
             <p id="playerTwoPieces">xx</p>
             <div class="picesBar">
                 <div class="picesBarData" id="playerTwoBar"></div>
@@ -43,7 +43,7 @@
         <div id="chessboard">
             <section class="winScreen" id="winScreen">
                 <div class="winContainer">
-                    <h3>{Player X} wins!</h3>
+                    <h3 id="winName">{Player X} wins!</h3>
                     <button>Play Again?</button> 
                 </div>
             </section>
