@@ -168,8 +168,8 @@ function setAllColor(elements, color){
 }
 /**
  * Set all cells to have a gradient color
- * @param {HTMLCollection<Element} elements 
- * @param {String} color 
+ * @param {HTMLCollection<Element} elements - HTML elements
+ * @param {String} color - String of the color to calulate the gradient (HEX value)
  * @see {@link radialGradient()} - Caluate a gradient color for all cells
  */
 function setGradient(elements, color){
